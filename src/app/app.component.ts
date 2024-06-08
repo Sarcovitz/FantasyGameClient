@@ -19,7 +19,7 @@ export class AppComponent {
     let iv = '1234567890123456';
     this.key = CryptoJS.enc.Utf8.parse(key);
     this.iv = CryptoJS.enc.Utf8.parse(iv);
-    this.encrypt('1234');
+    this.encrypt('ddd');
     this.decrypt(this.encrypted)
   }
   title = 'FantasyGameClient'
@@ -43,7 +43,12 @@ export class AppComponent {
   }
 
   decrypt(data: string):void{
-    const bytes  = CryptoJS.AES.decrypt(data, 'secret key 123');
+    const bytes  = CryptoJS.AES.decrypt(data, this.key,{
+      iv: this.iv,
+      keySize: 32,
+      mode: CryptoJS.mode.CBC,
+      //padding: CryptoJS.pad.NoPadding
+    });
     const plaintext = bytes.toString(CryptoJS.enc.Utf8);
     this.decrypted = plaintext;
   }
