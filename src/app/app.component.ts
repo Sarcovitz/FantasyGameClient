@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { AppModule } from './app.module';
-import { TopbarComponent } from './core/shared/navigation/topbar/topbar.component';
+import { LayoutModule } from './core/shared/layout/layout.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AppModule],
+  imports: [AppModule, LayoutModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
