@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
+import { AppModule } from './app.module';
+import { TopbarComponent } from './core/shared/navigation/topbar/topbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [AppModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
