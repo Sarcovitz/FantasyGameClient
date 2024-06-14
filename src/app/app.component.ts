@@ -74,8 +74,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.decrypted = plaintext;
   }
 
-  public checkIfGameUrl(url: string): boolean{
-    return this.router.url.includes('/game/')
+  public checkIfGameUrl(url: string): void {
+    this.isGameUrl = url.includes('/game')
   }
 }
 

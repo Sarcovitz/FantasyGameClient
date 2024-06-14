@@ -1,4 +1,4 @@
-<app-topbar></app-topbar>
-<div ngIf="checkIfGameUrl" class="topbar-separator"></div>
+<app-topbar *ngIf="!this.isGameUrl"></app-topbar>
+<div *ngIf="!this.isGameUrl" class="topbar-separator"></div>
 <router-outlet />
 <app-footer></app-footer>    
