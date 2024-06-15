@@ -1,5 +1,6 @@
-export class RegisterUserResponse {
-    Id: number = 0;
-    Username: string = '';
-    Email: string = '';
+export class RegisterUserRequest {
+    username: string = '';
+    email: string = '';
+    password: string = '';
+    password2: string = '';
 }
