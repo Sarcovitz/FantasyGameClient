@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -8,11 +8,10 @@ import { RouterOutlet } from '@angular/router';
   declarations: [],
   imports: [
     CommonModule,
-    RouterOutlet,
+    RegisterComponent
   ],
-  exports: [
-    RouterOutlet,
-    CommonModule
+  exports:[
+    RegisterComponent
   ]
 })
-export class AppModule { }
+export class AuthModule { }

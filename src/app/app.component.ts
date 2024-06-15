@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { AppModule } from './app.module';
 import { LayoutModule } from './core/shared/layout/layout.module';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,14 @@ import { LayoutModule } from './core/shared/layout/layout.module';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+  private urlSubscription: Subscription | null = null;
+  isGameUrl: boolean = false;
+
   private key: CryptoJS.lib.WordArray;
   private iv: CryptoJS.lib.WordArray;
 
-  constructor()
+  constructor(private router: Router)
   {
     let key = '1234567890123456';
     let iv = '1234567890123456';
@@ -23,6 +28,21 @@ export class AppComponent {
     this.encrypt('ddd');
     this.decrypt(this.encrypted)
   }
+
+  ngOnInit(): void {
+    this.urlSubscription = this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd){
+        this.checkIfGameUrl(event.urlAfterRedirects);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if(this.urlSubscription){
+      this.urlSubscription.unsubscribe();
+    }
+  }
+
   title = 'FantasyGameClient'
   test = '1234';
   secret = '12345678901234567890123456789012';
@@ -52,6 +72,10 @@ export class AppComponent {
     });
     const plaintext = bytes.toString(CryptoJS.enc.Utf8);
     this.decrypted = plaintext;
+  }
+
+  public checkIfGameUrl(url: string): void {
+    this.isGameUrl = url.includes('/game')
   }
 }
 
