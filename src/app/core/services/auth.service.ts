@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { RegisterUserDTO } from '../models/DTOs/RegisterUserDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  public jwtToken: string | undefined = undefined;
+  
   constructor() { }
 
   register(registerUserRequest: RegisterUserRequest): void {
