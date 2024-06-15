@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { LayoutModule } from '../layout.module';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
-  imports: [LayoutModule]
+  imports: [RouterModule]
 })
 export class TopbarComponent {
 
