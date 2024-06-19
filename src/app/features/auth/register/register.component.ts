@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthModule } from '../auth.module';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [AuthModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  registerForm = new FormGroup({
+  public registerForm = new FormGroup({
 		username: new FormControl('', [
 			Validators.required,
 			Validators.minLength(3),
@@ -33,5 +34,9 @@ export class RegisterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void{
+
   }
 }
